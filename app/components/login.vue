@@ -21,10 +21,10 @@ const inputStyle=reactive({
 const boxBeClick=(event)=>{
 	inputStyle.borderColor='red';
 };
-let account=ref('');
+let id=ref('');
 let password=ref('');
 const accountChange=(event)=>{
-	account=event;
+	id=event;
 };
 const passwordChange=(event)=>{
 	password=event;
@@ -34,7 +34,7 @@ const login=()=>{
 		url:'http://localhost:3000/auth/',
 		method:'POST',
 		data:{
-			account,
+			id,
 			password
 		},
 		header:{
