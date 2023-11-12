@@ -1,8 +1,8 @@
 <script setup>
-import {onShow} from "@dcloudio/uni-app"
-	onShow(() => {
-	    console.log("B 页面 onShow");
-	  });
+import { onShow } from '@dcloudio/uni-app';
+onShow(() => {
+	console.log('B 页面 onShow');
+});
 </script>
 
 <style>
