@@ -3,13 +3,13 @@
 		<h1 class="title">登入</h1>
 		<view class="inputPart">
 			<uni-section title="账号:" titleFontSize="16px">
-				<uni-easyinput class="accountInput" placeholder="请输入学号/工号" :styles="inputStyle" @click="boxBeClick" @input="account" @focus="inputFocus"></uni-easyinput>
+				<uni-easyinput class="accountInput" placeholder="请输入学号/工号" :styles="inputStyle" @click="boxBeClick" @input="accountChange" @focus="inputFocus"></uni-easyinput>
 			</uni-section>
 			<uni-section title="密码:" titleFontSize="16px">
-				<uni-easyinput class="accountInput" type="password" placeholder="请输入密码" @input="account"></uni-easyinput>
+				<uni-easyinput class="accountInput" type="password" placeholder="请输入密码" @input="passwordChange"></uni-easyinput>
 			</uni-section>
 		</view>
-		<button class="loginButton">登入</button>
+		<button class="loginButton" @click="login">登入</button>
 	</view>
 </template>
 
@@ -20,7 +20,40 @@ const inputStyle=reactive({
 });
 const boxBeClick=(event)=>{
 	inputStyle.borderColor='red';
-}
+};
+let account=ref('');
+let password=ref('');
+const accountChange=(event)=>{
+	account=event;
+};
+const passwordChange=(event)=>{
+	password=event;
+};
+const login=()=>{
+	uni.request({
+		url:'http://localhost:3000/auth/',
+		method:'POST',
+		data:{
+			account,
+			password
+		},
+		header:{
+			'Content-Type':'application/json'
+		},
+		success:(res)=>{
+			console.log(`状态码：${res.statusCode}`);
+			if(res.data.message==='user register successfully.'){
+				console.log("账号注册成功");
+			}else if(res.data.message==='login successfully!'){
+				console.log("账号登入成功");
+			}else if(res.data.message==='wrong password!'){
+				console.log("密码错误");
+			}else{
+				console.log(`错误为：${res.data.error}`);
+			}
+		}
+	});
+};
 </script>
 
 <style>
