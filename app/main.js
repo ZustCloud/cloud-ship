@@ -1,4 +1,5 @@
 import App from './App'
+import login from './components/login.vue'
 
 // #ifndef VUE3
 import Vue from 'vue'
@@ -14,6 +15,7 @@ app.$mount()
 import { createSSRApp } from 'vue'
 export function createApp() {
   const app = createSSRApp(App)
+  app.component('login',login);
   return {
     app
   }

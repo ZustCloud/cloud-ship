@@ -1,27 +1,11 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
-			<uni-tag text="标签"></uni-tag>
-		</view>
+		<login></login>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
+<script setup>
+	
 </script>
 
 <style>
