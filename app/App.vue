@@ -1,17 +1,10 @@
-<script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
-	}
+<script setup>
+import {onShow} from "@dcloudio/uni-app"
+	onShow(() => {
+	    console.log("B 页面 onShow");
+	  });
 </script>
 
 <style>
-	/*每个页面公共css */
+/*每个页面公共css */
 </style>
