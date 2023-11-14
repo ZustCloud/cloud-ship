@@ -11,6 +11,12 @@ dependencies:
   jest:
     specifier: ^29.7.0
     version: 29.7.0
+  js-pinyin:
+    specifier: ^0.2.5
+    version: 0.2.5
+  pinyin-match:
+    specifier: ^1.2.4
+    version: 1.2.4
 
 packages:
 
@@ -1766,6 +1772,10 @@ packages:
       - ts-node
     dev: false
 
+  /js-pinyin@0.2.5:
+    resolution: {integrity: sha512-XuqAZ9fctWCzKx/ALgsDRtfd/xwaC/IyAwkDkW8jTXhlVNRuj+lG2tKEOWraCHLgaOSPkSFFWXB3qjfNTaMU6A==}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: false
@@ -1979,6 +1989,10 @@ packages:
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    dev: false
+
+  /pinyin-match@1.2.4:
+    resolution: {integrity: sha512-HpUiaSxcG3rrpKAMZXq/rMHbEp7wvfu9B64lHJBy+63xAr/hVdBC8xqkWWPnNyjSb19ihdh8FnXo+9m6jAr9Mg==}
     dev: false
 
   /pirates@4.0.6:
