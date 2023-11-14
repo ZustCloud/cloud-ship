@@ -15,7 +15,7 @@
 				@input="passwordChange"
 				></uni-easyinput>
 			</uni-section>
-			<text class="forgetPassword" @click="forgetPassword">忘记密码？</text>
+			<!-- <text class="forgetPassword" @click="forgetPassword">忘记密码？</text> -->
 		</view>
 		
 		<button 
@@ -72,7 +72,6 @@ const check=()=>{
 			'Content-Type':'application/json'
 		},
 		success:(res)=>{
-			// console.log(`状态码：${res.statusCode}`);
 			userPocess(res.data.message)
 		}
 	});
@@ -80,12 +79,12 @@ const check=()=>{
 const userPocess=(message)=>{
 	if(message==='user register successfully.'){
 		messageToggle('success','账号注册成功，请去登入')
-		console.log("注册成功")
+		// console.log("注册成功")
 	}else if(message==='wrong password!'){
 		messageToggle('error','密码输入错误')
-		console.log("密码错误")
+		// console.log("密码错误")
 	}else if(message==='login successfully!'){
-		console.log("账号登入成功")
+		// console.log("账号登入成功")
 	}else{
 		console.log(`错误为：${res.data.error}`)
 	}
