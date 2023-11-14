@@ -2,22 +2,22 @@
 	<view class="loginCp">
 		<h1 class="title">登入</h1>
 		<view class="inputPart">
-			<uni-section title="账号:" titleFontSize="16px">
-				<uni-easyinput 
-				class="accountInput" 
+			<uni-section class="accountInput" title="账号:" titleFontSize="16px">
+				<uni-easyinput  
 				placeholder="请输入学号/工号"  
 				@input="accountChange" 
 				></uni-easyinput>
 			</uni-section>
-			<uni-section title="密码:" titleFontSize="16px">
+			<uni-section class="accountInput" title="密码:" titleFontSize="16px">
 				<uni-easyinput 
-				class="accountInput" 
 				type="password" 
 				placeholder="请输入密码" 
 				@input="passwordChange"
 				></uni-easyinput>
 			</uni-section>
+			<text class="forgetPassword" @click="forgetPassword">忘记密码？</text>
 		</view>
+		
 		<button 
 		class="loginButton"
 		@click="login"
@@ -29,7 +29,7 @@
 				 :type="msgType" 
 				 :message="messageText" 
 				 :duration="2000"
-				 >{{messageText}}</uni-popup-message>
+				 ></uni-popup-message>
 			 </uni-popup>
 		 </view>
 	</view>
@@ -47,10 +47,13 @@ let id=ref('')
 let password=ref('')
 
 const accountChange=(event)=>{
-	id=event
+	id.value=event
 }
 const passwordChange=(event)=>{
-	password=event
+	password.value=event
+}
+const forgetPassword=()=>{
+	
 }
 const login=()=>{
 	if(id.value.length>0&&password.value.length>0){
@@ -62,8 +65,8 @@ const check=()=>{
 		url:'http://localhost:3000/auth/',
 		method:'POST',
 		data:{
-			id,
-			password
+			id:id.value,
+			password:password.value
 		},
 		header:{
 			'Content-Type':'application/json'
@@ -106,7 +109,11 @@ const messageToggle=(type,info)=>{
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+		align-items: flex-end;
 		height: 200px;
+	}
+	.accountInput{
+		width: 100%;
 	}
 	.title{
 		font-size: 28px;
@@ -120,8 +127,13 @@ const messageToggle=(type,info)=>{
 		font-weight: 500;
 	}
 	.accountInput{
-		.is-input-border{
-			border-color: #C94E60;
-		}
+		width: 100%;
+	}
+	.forgetPassword{
+		margin-top: 15px;
+		width: 80px;
+		height: 28px;
+		font-size: 14px;
+		color: #c94e60;
 	}
 </style>
