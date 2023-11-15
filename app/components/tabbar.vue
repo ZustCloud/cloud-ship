@@ -18,7 +18,7 @@
 export default {
 	methods: {
 		navigateTo(routeName) {
-			let URL = '/pages/' + routeName + '/index';
+			let URL = `/pages/${routeName}/index`;
 			uni.navigateTo({
 				url: URL
 			});

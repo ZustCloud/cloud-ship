@@ -12,6 +12,7 @@
 	"dependencies": {
 		"axios": "^1.6.1",
 		"jest": "^29.7.0",
-		"js-pinyin": "^0.2.5"
+		"js-pinyin": "^0.2.5",
+		"vuex": "^4.1.0"
 	}
 }
