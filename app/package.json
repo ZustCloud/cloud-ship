@@ -10,9 +10,11 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@dcloudio/types": "^3.4.3",
 		"axios": "^1.6.1",
 		"jest": "^29.7.0",
 		"js-pinyin": "^0.2.5",
+		"typescript": "^5.2.2",
 		"vuex": "^4.1.0"
 	}
 }

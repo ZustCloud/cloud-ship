@@ -70,7 +70,7 @@ isRegisterUserinfo();
 <template>
 	<view>
 		<view class="usersList"><uni-indexed-list :options="users" :showSelect="false" @click="bindListClick"></uni-indexed-list></view>
-		<uni-popup ref="popup" :mask-click="false"><UserForm @update-userinfo="closePopup"></UserForm></uni-popup>
+		<uni-popup ref="popup" :mask-click="false"><UserForm @update:userinfo="closePopup"></UserForm></uni-popup>
 		<Tabbar></Tabbar>
 	</view>
 </template>

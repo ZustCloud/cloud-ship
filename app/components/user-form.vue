@@ -9,9 +9,9 @@
 </template>
 <script setup lang="ts">
 import { defineEmits } from 'vue';
-const emit = defineEmits(['update-userinfo']);
+const emit = defineEmits(['update:userinfo']);
 const updateUserInfo = () => {
-	emit('update-userinfo');
+	emit('update:userinfo');
 };
 </script>
 <style scoped>

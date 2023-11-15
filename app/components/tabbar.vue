@@ -14,16 +14,12 @@
 	</div>
 </template>
 
-<script>
-export default {
-	methods: {
-		navigateTo(routeName) {
-			let URL = `/pages/${routeName}/index`;
-			uni.navigateTo({
-				url: URL
-			});
-		}
-	}
+<script setup>
+const navigateTo = routeName => {
+	let URL = `/pages/${routeName}/index`;
+	uni.navigateTo({
+		url: URL
+	});
 };
 </script>
 
