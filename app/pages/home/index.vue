@@ -6,6 +6,7 @@ import Tabbar from '../../components/tabbar.vue';
 import UserForm from '../../components/user-form.vue';
 //引入pinyin插件
 import pinyin from 'js-pinyin';
+import { User } from '../../components/user-form/types';
 //是否注册过个人信息
 const userId = '12102414'; //根据学号判断有无注册
 const rawUsers = ref([]);
@@ -70,7 +71,7 @@ isRegisterUserinfo();
 <template>
 	<view>
 		<view class="usersList"><uni-indexed-list :options="users" :showSelect="false" @click="bindListClick"></uni-indexed-list></view>
-		<uni-popup ref="popup" :mask-click="false"><UserForm @update:userinfo="closePopup"></UserForm></uni-popup>
+		<uni-popup ref="popup" :mask-click="false"><UserForm @update:userinfo="closePopup" :user="{ id:userId } as User"></UserForm></uni-popup>
 		<Tabbar></Tabbar>
 	</view>
 </template>
