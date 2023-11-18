@@ -7,5 +7,6 @@ export default {
 	"birthday": "生日",
 	"wechat": "微信",
 	"QQ": "QQ",
+	"Sroom": "寝室号",
 	"resume": "个人简介"
 }
