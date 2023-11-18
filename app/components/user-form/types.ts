@@ -1,7 +1,7 @@
 export interface User {
 	id: string;
 	password?: string;
-	detail?: UserDetail;
+	details?: UserDetail;
 }
 
 export interface UserDetail {
@@ -10,6 +10,7 @@ export interface UserDetail {
 	email?: string;
 	sex?: string;
 	classNo?: string;
+	roomNo?:string;
 	birthday?: string;
 	wechat?: string;
 	QQ?: string;
