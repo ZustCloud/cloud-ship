@@ -2,10 +2,13 @@
 	<view>
 		<div class="content">
 			<div>
-				<uni-file-picker class="photo" :imageStyles="imageStyle" limit="1" file-mediatype="image">
+				<uni-file-picker class="photo" :imageStyles="props.type==='detailed' ? imageStyle:simpleImageStyle"
+					limit="1" file-mediatype="image">
 				</uni-file-picker>
 			</div>
-			<uni-forms-item class="normalInfo" v-for="item in USER_DETAIL_FORM_FIELDS" :label="t[item]">
+			<uni-forms-item class="normalInfo"
+				v-for="item in (props.type==='detailed' ? USER_DETAIL_FORM_FIELDS:USER_SIMPLE_DETAIL_FORM_FIELDS)"
+				:label="t[item]">
 				<uni-easyinput v-model="userDetailForm[item]"
 					:placeholder="props.mode==='edit' ? `请输入您的${t[item]}`:'未填写'"
 					:styles="props.mode === 'edit' ? editStyles : inputstyle"
@@ -27,11 +30,13 @@
 <script setup lang="ts">
 	import {
 		ref,
-		Ref
+		Ref,
+		onMounted
 	} from 'vue';
 
 	import {
 		USER_DETAIL_FORM_FIELDS,
+		USER_SIMPLE_DETAIL_FORM_FIELDS,
 		UserDetail
 	} from './user-form/types';
 	import t from './user-form/lang';
@@ -40,6 +45,7 @@
 		userId: string;
 		password: string;
 		mode: 'edit' | null;
+		type: 'detailed' | null;
 	}
 	const props = defineProps < IProps > ();
 
@@ -56,8 +62,10 @@
 		resume: ''
 	});
 
+
 	let msgType = ref()
 	let messageText = ref()
+	const buttonusable = ref(false)
 	const alertDialog = ref(null)
 	//输入框可编辑的样式
 	const editStyles = ref({
@@ -75,6 +83,16 @@
 		height: '160',
 		border: {
 			color: '#C94E60',
+			width: '2px'
+		}
+	});
+
+	const simpleImageStyle = ref({
+		width: '100',
+		height: '100',
+		border: {
+			color: '#C94E60',
+			radius: '50%',
 			width: '2px'
 		}
 	});
@@ -103,7 +121,7 @@
 			}
 		})
 	}
-	getInfo()
+
 	const userPocess = (message) => {
 		if (message === 'update successfully!') {
 			messageToggle('success', '个人信息更新成功')
@@ -117,6 +135,10 @@
 		messageText.value = info
 		alertDialog.value.open()
 	}
+
+	onMounted(() => {
+		getInfo()
+	})
 </script>
 
 <style>
