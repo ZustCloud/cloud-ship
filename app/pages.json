@@ -1,17 +1,19 @@
  {
- 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	 //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+ 	"pages": [
  		{
- 			"path": "pages/login/index"
+ 			"path": "pages/info"
  		},
  		{
- 			"path": "pages/index/index"
+ 			"path": "pages/login"
  		},
  		{
- 			"path": "pages/home/index"
+ 			"path": "pages/index"
  		},
  		{
- 			"path": "pages/userInfo/index"
+ 			"path": "pages/home"
  		}
+
  	],
  	"globalStyle": {
  		"navigationBarTextStyle": "black",

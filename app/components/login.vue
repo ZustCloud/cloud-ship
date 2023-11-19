@@ -11,7 +11,7 @@
 		<button class="loginButton" @click="login">登入</button>
 		<view>
 			<uni-popup ref="alertDialog" type="message">
-				<uni-popup-message :style="{ color: msgType == 'success' ? 'green' : 'red' }" :type="msgType" :message="messageText" :duration="2000"></uni-popup-message>
+				<uni-popup-message :style="{ color: msgType === 'success' ? 'green' : 'red' }" :type="msgType" :message="messageText" :duration="2000"></uni-popup-message>
 			</uni-popup>
 		</view>
 	</view>
@@ -85,6 +85,7 @@ const messageToggle = (type, info) => {
 	flex-direction: column;
 	/* align-items: flex-start; */
 }
+
 .inputPart {
 	display: flex;
 	flex-direction: column;
@@ -92,13 +93,16 @@ const messageToggle = (type, info) => {
 	align-items: flex-end;
 	height: 200px;
 }
+
 .accountInput {
 	width: 100%;
 }
+
 .title {
 	font-size: 28px;
 	border-color: red;
 }
+
 .loginButton {
 	margin-top: 50px;
 	width: 80px;
@@ -106,9 +110,11 @@ const messageToggle = (type, info) => {
 	color: white;
 	font-weight: 500;
 }
+
 .accountInput {
 	width: 100%;
 }
+
 .forgetPassword {
 	margin-top: 15px;
 	width: 80px;
