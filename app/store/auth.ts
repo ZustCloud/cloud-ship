@@ -1,3 +1,8 @@
-import { reactive } from "../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/hbuilderx-language-services/builtin-dts/common/vue2And3";
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export default new Vue()
+export const useauthStore = defineStore('User', () => {
+	const id = ref<String>();
+	const password = ref<String>();
+	return { id, password }
+});

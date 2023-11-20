@@ -6,7 +6,7 @@
 				<uni-icons type="home" size="25"></uni-icons>
 				<span>通讯录</span>
 			</div>
-			<div class="tab-item" @click="navigateTo('userInfo')">
+			<div class="tab-item" @click="navigateTo('info')">
 				<uni-icons type="person-filled" size="25"></uni-icons>
 				<span>我</span>
 			</div>
@@ -16,7 +16,7 @@
 
 <script setup>
 const navigateTo = routeName => {
-	let URL = `/pages/${routeName}/index`;
+	let URL = `/pages/${routeName}`;
 	uni.navigateTo({
 		url: URL
 	});
