@@ -10,6 +10,8 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@babel/preset-env": "^7.23.3",
+		"@babel/preset-typescript": "^7.23.3",
 		"@dcloudio/types": "^3.4.3",
 		"axios": "^1.6.1",
 		"dayjs": "^1.11.10",
