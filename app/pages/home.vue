@@ -5,12 +5,12 @@ import Tabbar from '../components/tabbar.vue';
 import UserForm from '../components/user-form/index.vue';
 import pinyin from 'js-pinyin';
 import { User } from '../components/user-form/types';
-import { useauthStore } from '../store/auth';
+import { useuserStore } from '../store/auth';
 
 const userId = '12102414';
 const rawUsers = ref([]);
 const form = ref();
-const authStore = useauthStore();
+const authStore = useuserStore();
 
 const isRegisterUserinfo = async () => {
 	const config = {

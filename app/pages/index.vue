@@ -2,7 +2,9 @@
 	<view class="content"><login></login></view>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import login from '../components/login.vue';
+</script>
 
 <style>
 .content {

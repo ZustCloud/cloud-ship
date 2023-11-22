@@ -1,11 +1,12 @@
+<script setup lang="ts">
+import login from '../components/login.vue';
+</script>
 <template>
 	<view class="loginPage">
 		<h1 class="title"></h1>
 		<login></login>
 	</view>
 </template>
-
-<script></script>
 
 <style>
 .loginPage {
