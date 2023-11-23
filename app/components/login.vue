@@ -32,8 +32,8 @@ const handleLogin = () => {
 					popmsgType.value = 'success';
 					popmsgMessage.value = '登录成功';
 
-					userStore.id = id.value;
-					userStore.password = password.value;
+					userStore.id = form.id;
+					userStore.password = form.password;
 				} else if (msg === 'wrong password!') {
 					popmsgMessage.value = '密码输入错误';
 					// TODO 密码错误
