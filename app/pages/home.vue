@@ -4,7 +4,7 @@ import axios from 'axios';
 import Tabbar from '../components/tabbar.vue';
 import UserForm from '../components/user-form/index.vue';
 import pinyin from 'js-pinyin';
-import { User } from '../components/user-form/types';
+import { IFetchUserInfo } from '../api/user/type';
 import { useuserStore } from '../store/auth';
 
 const userId = '12102414';
@@ -26,7 +26,7 @@ const isRegisterUserinfo = async () => {
 
 const users = computed(() => {
 	const usersList = {};
-	rawUsers.value.forEach((i: User) => {
+	rawUsers.value.forEach((i: IFetchUserInfo) => {
 		if (i.details != undefined) {
 			const letter = pinyin.getFullChars(i.details.name)[0][0].toUpperCase(); //获取汉字全拼音
 			if (usersList[letter]) {
