@@ -1,129 +1,80 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import UniPopupMessage from '../uni_modules/uni-popup/components/uni-popup-message/uni-popup-message.vue';
-import { useauthStore } from '../store/auth';
-type PopupType = 'success' | 'warn' | 'error' | 'info' | undefined;
+import { reactive, ref } from 'vue';
+import { useuserStore } from '../store/auth';
+import { ILoginFormData } from '../api/user/type';
+import { reqLogin } from '../api/user/index';
+type PopmsgType = 'success' | 'warn' | 'error' | 'info' | undefined;
 
-const popform = ref(null);
-const popMsg = ref(null);
+const userStore = useuserStore();
 
-const id = ref('');
-const password = ref('');
+const popform = ref();
+const popmsgType = ref<PopmsgType>('error');
+const popmsgMessage = ref<string>();
 
-const authStore = useauthStore();
+const formRole = ref();
+const form: ILoginFormData = reactive({ id: '', password: '' });
+const logining = ref(false);
 
-const handleClick = () => {
-	if (id.value && password.value) {
-		check();
-	}
-};
+const handleLogin = () => {
+	formRole.value.validate((error: string) => {
+		if (!error) {
+			//TODO 表单验证通过
+			logining.value = true;
+			const data: ILoginFormData = {
+				id: form.id,
+				password: form.password
+			};
+			reqLogin(data).then(r => {
+				const msg = r[0];
+				const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+				if (msg === 'user register successfully.' || msg === 'login successfully!') {
+					// TODO 注册成功 || 登录成功
+					popmsgType.value = 'success';
+					popmsgMessage.value = '登录成功';
 
-const check = () => {
-	console.log(authStore.id, authStore.password);
-	uni.request({
-		method: 'POST',
-		url: 'http://localhost:3000/auth/',
-		data: {
-			id: id.value,
-			password: password.value
-		},
-		success: res => {
-			const msg = res.data.message;
-			console.log(msg);
-			uni.navigateTo({
-				url: '/pages/home'
-			});
-			if (msg === 'user register successfully.') {
-				// TODO 注册成功
-				message('success', '账号注册成功，请去登入');
-			} else if (msg === 'wrong password!') {
-				message('error', '密码输入错误');
-				// TODO 密码错误
-			} else if (msg === 'login successfully!') {
-				// TODO 登录成功
-				uni.navigateTo({
-					url: '/pages/home'
+					userStore.id = form.id;
+					userStore.password = form.password;
+				} else if (msg === 'wrong password!') {
+					popmsgMessage.value = '密码输入错误';
+					// TODO 密码错误
+				} else {
+					popmsgMessage.value = '请正确输入学号/工号和密码';
+				}
+				popform.value.open();
+				delay(2000).then(() => {
+					logining.value = false;
+					if (popmsgType.value === 'success') {
+						uni.navigateTo({
+							url: '/pages/home'
+						});
+					}
 				});
-			} else {
-				console.log(`错误为：${res.data.error}`);
-			}
+			});
 		}
 	});
 };
 
-const message = (type: PopupType, text: string) => {
-	console.log(popform, `1123213`);
-	// popupMsg.value.type = type
-	// popupMsg.value.message = text
-	popform.open();
-};
+const idPattern = '[0-9]{10}';
+const passwordPattern = '\\w{6}';
 </script>
 
 <template>
-	<view class="loginCp">
-		<h1 class="title">登入</h1>
-		<view class="inputPart">
-			<uni-section class="accountInput" title="账号:" titleFontSize="16px"><uni-easyinput placeholder="请输入学号/工号" @input="e => (id = e)"></uni-easyinput></uni-section>
-			<uni-section class="accountInput" title="密码:" titleFontSize="16px">
-				<uni-easyinput type="password" placeholder="请输入密码" @input="e => (password = e)"></uni-easyinput>
-			</uni-section>
-		</view>
-		<button
-			class="loginButton"
-			@click="
-				() => {
-					check();
-				}
-			"
-		>
-			登入
-		</button>
-		<uni-popup ref="popform" type="message"><uni-popup-message ref="popMsg"></uni-popup-message></uni-popup>
+	<view class="login" style="display: flex;flex-direction: column;align-items: center;">
+		<image style="width: 100px; height: 100px; background-color: #eeeeee;margin-bottom: 40px;" src="../assets/appIcon.png"></image>
+		<uni-forms :model="form" ref="formRole" validateTrigger="blur">
+			<uni-forms-item label="学号/工号:" name="id" :rules="[{ pattern: idPattern, errorMessage: '学号/工号类型是数字且长度为10' }]">
+				<uni-easyinput type="text" placeholder="请输入您的学号/工号" :inputBorder="false" v-model="form.id" />
+			</uni-forms-item>
+			<uni-forms-item label="密码:" name="password" :rules="[{ pattern: passwordPattern, errorMessage: '密码的长度至少为6' }]">
+				<uni-easyinput type="password" placeholder="请输入密码" :inputBorder="false" v-model="form.password" />
+			</uni-forms-item>
+			<view style="display: flex">
+				<button :disabled="logining" size="mini" type="primary" @click="handleLogin">登入</button>
+				<button size="mini">忘记密码</button>
+			</view>
+		</uni-forms>
+		<uni-popup ref="popform" type="message"><uni-popup-message :type="popmsgType" :message="popmsgMessage" :duration="2000"></uni-popup-message></uni-popup>
 	</view>
 </template>
 
-<style>
-.loginCp {
-	width: 70%;
-	display: flex;
-	flex-direction: column;
-	/* align-items: flex-start; */
-}
-
-.inputPart {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: flex-end;
-	height: 200px;
-}
-
-.accountInput {
-	width: 100%;
-}
-
-.title {
-	font-size: 28px;
-	border-color: red;
-}
-
-.loginButton {
-	margin-top: 50px;
-	width: 80px;
-	background-color: #c94e60;
-	color: white;
-	font-weight: 500;
-}
-
-.accountInput {
-	width: 100%;
-}
-
-∑∑ .forgetPassword {
-	margin-top: 15px;
-	width: 80px;
-	height: 28px;
-	font-size: 14px;
-	color: #c94e60;
-}
-</style>
+<style scoped></style>
