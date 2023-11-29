@@ -4,25 +4,17 @@
  			"path": "pages/login"
  		},
  		{
+ 			"path": "pages/reset-password"
+ 		},
+ 		{
  			"path": "pages/info"
  		},
  		{
- 			"path": "pages/index"
+ 			"path": "pages/home"
  		},
  		{
- 			"path": "pages/home"
+ 			"path": "pages/index"
  		}
- 		// {
- 		// 	"path": "pages/store"
- 		// },
- 		// {
- 		// 	"path" : "pages/sub-store",
- 		// 	"style" : 
- 		// 	{
- 		// 		"navigationBarTitleText" : "",
- 		// 		"enablePullDownRefresh" : false
- 		// 	}
- 		// }
  	],
  	"globalStyle": {
  		"navigationBarTextStyle": "black",

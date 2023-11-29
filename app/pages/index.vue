@@ -1,16 +1,21 @@
-<template>
-	<view class="content"><login></login></view>
-</template>
-
 <script setup lang="ts">
-import login from '../components/login.vue';
+import Welcome from '../components/welcome.vue';
+import Register from '../components/register.vue';
+import RegisterPro from '../components/registerpro.vue';
 </script>
 
-<style>
-.content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-</style>
+<template>
+	<swiper class="swiper" style="width: 100%;height: 100vh;" indicator-dots="true">
+		<swiper-item>
+			<uni-card><Welcome></Welcome></uni-card>
+		</swiper-item>
+		<swiper-item>
+			<uni-card><Register></Register></uni-card>
+		</swiper-item>
+		<swiper-item>
+			<uni-card><RegisterPro></RegisterPro></uni-card>
+		</swiper-item>
+	</swiper>
+</template>
+
+<style></style>

@@ -17,7 +17,7 @@ const logining = ref(false);
 
 const handleLogin = () => {
 	formRole.value.validate((error: string) => {
-		if (!error) {
+		if (!error && form.id && form.password) {
 			//TODO 表单验证通过
 			logining.value = true;
 			const data: ILoginFormData = {
@@ -25,7 +25,7 @@ const handleLogin = () => {
 				password: form.password
 			};
 			reqLogin(data).then(r => {
-				const msg = r[0];
+				const msg = r.message;
 				const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 				if (msg === 'user register successfully.' || msg === 'login successfully!') {
 					// TODO 注册成功 || 登录成功
@@ -45,7 +45,7 @@ const handleLogin = () => {
 					logining.value = false;
 					if (popmsgType.value === 'success') {
 						uni.navigateTo({
-							url: '/pages/home'
+							url: '/pages/welcome'
 						});
 					}
 				});

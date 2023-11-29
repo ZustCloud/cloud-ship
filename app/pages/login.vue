@@ -2,10 +2,7 @@
 import login from '../components/login.vue';
 </script>
 <template>
-	<view class="loginPage">
-		<h1 class="title"></h1>
-		<login></login>
-	</view>
+	<view class="loginPage"><login></login></view>
 </template>
 
 <style>
